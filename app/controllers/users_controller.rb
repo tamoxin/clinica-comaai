@@ -1,10 +1,10 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
-  skip_before_action :require_professor, :require_admin, :require_coordinator, :require_login
-  # before_action :not_available, only: [:destroy]
-  # before_action :coord_or_admin, only: [:new, :create, :index]
-  # before_action :is_owner, only: [:show, :edit, :update]
+  skip_before_action :require_professor, :require_admin, :require_coordinator
+  before_action :not_available, only: [:destroy]
+  before_action :coord_or_admin, only: [:new, :create, :index]
+  before_action :is_owner, only: [:show, :edit, :update]
 
 
 
@@ -90,33 +90,33 @@ class UsersController < ApplicationController
       params.require(:user).permit(:username, :password, :userType, :firstName, :lastName, :email, :phone, :active)
     end
 
-  # def coord_or_admin
-  #   unless coordinator? || admin?
-  #     if professor?
-  #       redirect_to courses_path
-  #     elsif student?
-  #       redirect_to groups_path
-  #     end
-  #   end
-  # end
-  #
-  # def is_owner
-  #   unless admin?
-  #     user = User.find(params[:id])
-  #     if user.userType == 'admin'
-  #       redirect_to users_path
-  #     elsif user.userType == 'coordinator' && current_user.id != user.id
-  #       redirect_to users_path
-  #     elsif current_user.id != user.id
-  #       unless coordinator?
-  #         redirect_to root_path
-  #       end
-  #     end
-  #   end
-  # end
-  #
-  # def not_available
-  #   redirect_to users_path
-  # end
+  def coord_or_admin
+    unless coordinator? || admin?
+      if professor?
+        redirect_to courses_path
+      elsif student?
+        redirect_to groups_path
+      end
+    end
+  end
+
+  def is_owner
+    unless admin?
+      user = User.find(params[:id])
+      if user.userType == 'admin'
+        redirect_to users_path
+      elsif user.userType == 'coordinator' && current_user.id != user.id
+        redirect_to users_path
+      elsif current_user.id != user.id
+        unless coordinator?
+          redirect_to root_path
+        end
+      end
+    end
+  end
+
+  def not_available
+    redirect_to users_path
+  end
 
 end

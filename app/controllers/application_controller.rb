@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
 
   include SessionsHelper
 
-  # before_action :require_login, :require_admin, :require_coordinator, :require_professor
+  before_action :require_login, :require_admin, :require_coordinator, :require_professor
 
   before_action :set_no_cache
 
@@ -14,57 +14,57 @@ class ApplicationController < ActionController::Base
   end
 
   private
-  #
-  # def require_login
-  #   unless logged_in?
-  #     redirect_to login_path
-  #   end
-  # end
-  #
-  #
-  # def require_admin
-  #   unless admin?
-  #     if coordinator?
-  #       redirect_to users_path
-  #     else if professor?
-  #            redirect_to courses_path
-  #          else if student?
-  #                 redirect_to groups_path
-  #               else
-  #                 redirect_to login_path
-  #               end
-  #          end
-  #     end
-  #   end
-  # end
-  #
-  #
-  # def require_coordinator
-  #   unless coordinator?
-  #     if professor?
-  #            redirect_to courses_path
-  #          else if student?
-  #                 redirect_to groups_path
-  #               else
-  #                 redirect_to login_path
-  #               end
-  #          end
-  #     end
-  #   end
-  #
-  #
-  # def require_professor
-  #   unless professor?
-  #     if coordinator?
-  #            redirect_to users_path
-  #          else if student?
-  #                 redirect_to groups_path
-  #               else
-  #                 redirect_to login_path
-  #               end
-  #          end
-  #     end
-  #   end
+
+  def require_login
+    unless logged_in?
+      redirect_to login_path
+    end
+  end
+
+
+  def require_admin
+    unless admin?
+      if coordinator?
+        redirect_to users_path
+      else if professor?
+             redirect_to courses_path
+           else if student?
+                  redirect_to groups_path
+                else
+                  redirect_to login_path
+                end
+           end
+      end
+    end
+  end
+
+
+  def require_coordinator
+    unless coordinator?
+      if professor?
+             redirect_to courses_path
+           else if student?
+                  redirect_to groups_path
+                else
+                  redirect_to login_path
+                end
+           end
+      end
+    end
+
+
+  def require_professor
+    unless professor?
+      if coordinator?
+             redirect_to users_path
+           else if student?
+                  redirect_to groups_path
+                else
+                  redirect_to login_path
+                end
+           end
+      end
+    end
 end
 
 
