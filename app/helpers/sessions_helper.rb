@@ -12,7 +12,7 @@ module SessionsHelper
 
   # Returns true if the user is logged in, false otherwise.
   def logged_in?
-    !current_user.nil? || true
+    !current_user.nil?
   end
 
   def active?
@@ -20,19 +20,19 @@ module SessionsHelper
   end
 
   def admin?
-    (logged_in? && active? && current_user.userType == 'admin') || true
+    (logged_in? && active? && current_user.userType == 'admin')
   end
 
   def coordinator?
-    (logged_in? && active? && current_user.userType == 'coordinator') || true
+    (logged_in? && active? && current_user.userType == 'coordinator')
   end
 
   def professor?
-    (logged_in? && active? && current_user.userType == 'professor') || true
+    (logged_in? && active? && current_user.userType == 'professor')
   end
 
   def student?
-    (logged_in? && active? && current_user.userType == 'student') || true
+    (logged_in? && active? && current_user.userType == 'student')
   end
 
   # Logs out the current user.

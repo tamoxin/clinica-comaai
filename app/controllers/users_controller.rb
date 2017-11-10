@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   skip_before_action :require_professor, :require_admin, :require_coordinator
   before_action :not_available, only: [:destroy]
   before_action :coord_or_admin, only: [:new, :create, :index]
-  # before_action :is_owner, only: [:show, :edit, :update]
+  before_action :is_owner, only: [:show, :edit, :update]
 
 
 
@@ -14,8 +14,8 @@ class UsersController < ApplicationController
   def index
     if admin?
       @users = User.all
-    # elsif coordinator?
-    #   @users = User.where.not(userType: 'admin').where.not(userType: 'coordinator').all
+    elsif coordinator?
+      @users = User.where.not(userType: 'admin').where.not(userType: 'coordinator').all
     end
   end
 
@@ -36,11 +36,11 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.json
   def create
-    # if coordinator?
-    #   if params[:user][:userType] == 'admin' || params[:user][:userType] == 'coordinator'
-    #        redirect_to new_user_path, notice: 'Action forbidden.'
-    #   end
-    # end
+    if coordinator?
+      if params[:user][:userType] == 'admin' || params[:user][:userType] == 'coordinator'
+           redirect_to new_user_path, notice: 'Action forbidden.'
+      end
+    end
         @user = User.new(user_params)
 
         respond_to do |format|
@@ -100,20 +100,20 @@ class UsersController < ApplicationController
     end
   end
 
-  # def is_owner
-  #   unless admin?
-  #     user = User.find(params[:id])
-  #     if user.userType == 'admin'
-  #       redirect_to users_path
-  #     elsif user.userType == 'coordinator' && current_user.id != user.id
-  #       redirect_to users_path
-  #     elsif current_user.id != user.id
-  #       unless coordinator?
-  #         redirect_to root_path
-  #       end
-  #     end
-  #   end
-  # end
+  def is_owner
+    unless admin?
+      user = User.find(params[:id])
+      if user.userType == 'admin'
+        redirect_to users_path
+      elsif user.userType == 'coordinator' && current_user.id != user.id
+        redirect_to users_path
+      elsif current_user.id != user.id
+        unless coordinator?
+          redirect_to root_path
+        end
+      end
+    end
+  end
 
   def not_available
     redirect_to users_path
