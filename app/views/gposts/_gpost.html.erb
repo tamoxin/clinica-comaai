@@ -1,0 +1,16 @@
+<% if gpost.title != nil %>
+<div class="well">
+  <div class="">
+    <h4 class="title"><%= gpost.title %></h4>
+    <p>
+      <%= gpost.body %>
+    </p>
+    <%  if gpost.link != nil %>
+        <%= link_to gpost.link, 'https://'+gpost.link %>
+    <% end %>
+  </div>
+  <% if current_page?(action: 'edit')%>
+      <%= link_to 'Delete', [@group, @gfolder, gpost], method: :delete, data: { confirm: 'Are you sure?' } %>
+  <% end %>
+  </div>
+<% end %>

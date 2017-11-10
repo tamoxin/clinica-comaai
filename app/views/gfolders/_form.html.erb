@@ -1,0 +1,23 @@
+<%= form_with(model: ([@group, gfolder]), local: true) do |form| %>
+    <% if gfolder.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(gfolder.errors.count, "error") %> prohibited this gfolder from being saved:</h2>
+
+          <ul>
+            <% gfolder.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <div class="form-group">
+      <%= form.label :name %>
+      <%= form.text_field :name, id: :gfolder_name, :class => 'form-control border-input'  %>
+    </div>
+
+
+    <div class="actions">
+      <%= form.submit :class => 'btn btn-info btn-fill btn-wd' %>
+    </div>
+<% end %>

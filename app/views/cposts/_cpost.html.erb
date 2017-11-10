@@ -1,0 +1,16 @@
+<% if cpost.title != nil %>
+<div class="well">
+  <div class="">
+    <h4 class="title"><%= cpost.title %></h4>
+    <p>
+      <%= cpost.body %>
+    </p>
+    <%  if cpost.link != nil %>
+        <%= link_to cpost.link, 'https://'+cpost.link %>
+    <% end %>
+  </div>
+  <% if current_page?(action: 'edit')%>
+  <%= link_to 'Delete', [@course, @cfolder, cpost], method: :delete, data: { confirm: 'Are you sure?' } %>
+  <% end %>
+  </div>
+<% end %>

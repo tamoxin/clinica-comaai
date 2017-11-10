@@ -1,0 +1,33 @@
+<%= form_with(model: ([@group, @gfolder, gpost]), local: true) do |form| %>
+    <% if gpost.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(gpost.errors.count, "error") %> prohibited this gpost from being saved:</h2>
+
+          <ul>
+            <% gpost.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <div class="form-group">
+      <%= form.label :title %>
+      <%= form.text_field :title, id: :gpost_title, :class => 'form-control border-input'  %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :body %>
+      <%= form.text_area :body, id: :gpost_body, :class => 'form-control border-input'  %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :link %>
+      <%= form.text_field :link, id: :gpost_link, :class => 'form-control border-input'  %>
+    </div>
+
+
+    <div class="actions">
+      <%= form.submit :class => 'btn btn-info btn-fill btn-wd' %>
+    </div>
+<% end %>

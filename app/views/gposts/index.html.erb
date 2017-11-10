@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Gposts</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Body</th>
+      <th>Link</th>
+      <th>Gfolder</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @gposts.each do |gpost| %>
+      <tr>
+        <td><%= gpost.title %></td>
+        <td><%= gpost.body %></td>
+        <td><%= gpost.link %></td>
+        <td><%= gpost.gfolder.name %></td>
+        <td><%= link_to 'Show', [@group, @gfolder, gpost] %></td>
+        <td><%= link_to 'Edit', edit_group_gfolder_gpost_path(@group, @gfolder, gpost) %></td>
+        <td><%= link_to 'Destroy', [@group, @gfolder, gpost], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Gpost', new_group_gfolder_gpost_path %>

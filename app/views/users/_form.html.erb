@@ -1,0 +1,80 @@
+
+<%= form_with(model: user, local: true) do |form| %>
+    <% if user.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+          <ul>
+            <% user.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+
+
+      <div class="form-group">
+        <%= form.label :username %>
+        <%= form.text_field :username, id: :user_username, :class => 'form-control border-input' %>
+      </div>
+
+    <div class="form-group">
+      <%= form.label :password %>
+      <%= form.password_field :password, id: :user_password, :value => (if user.password then user.password else nil end), :class => 'form-control border-input'  %>
+    </div>
+
+    <% if admin? || coordinator? %>
+    <div class="form-group">
+      <%= form.label :userType %>
+      <% if admin? %>
+      <%= form.select :userType, options_for_select([['Administrator', 'admin'],
+                                                     ['Coordinator', 'coordinator'],
+                                                     ['Professor', 'professor'],
+                                                     ['Student', 'student']], user.userType), :class => 'form-control'  %>
+      <% else %>
+      <%= form.select :userType, options_for_select([['Professor', 'professor'],
+                                                     ['Student', 'student']], user.userType), :class => 'form-control'  %>
+      <% end %>
+
+    </div>
+    <% end %>
+
+
+    <div class="form-group">
+      <%= form.label :firstName %>
+      <%= form.text_field :firstName, id: :user_firstName, :class => 'form-control border-input'  %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :lastName %>
+      <%= form.text_field :lastName, id: :user_lastName, :class => 'form-control border-input'  %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :email %>
+      <%= form.text_field :email, id: :user_email, :class => 'form-control border-input'  %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :phone %>
+      <%= form.text_field :phone, id: :user_phone, :class => 'form-control border-input'  %>
+    </div>
+
+    <% if admin? || coordinator? %>
+    <div class="form-group">
+      <%= form.label :active %>
+      <%= form.select :active, options_for_select([['Active', 1],
+                                                   ['Inactive', 0],
+                                                  ], (if user.active then 1 else 0 end)), :class => 'form-control border-input'  %>
+    </div>
+    <% end %>
+
+    <div class="actions text-center">
+      <%= form.submit :class => 'btn btn-info btn-fill btn-wd'  %>
+    </div>
+    <div class="clearfix"></div>
+
+<% end %>
+
+

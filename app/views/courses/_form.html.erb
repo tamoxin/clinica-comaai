@@ -1,0 +1,48 @@
+<%= form_with(model: course, local: true) do |form| %>
+    <% if course.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(course.errors.count, "error") %> prohibited this course from being saved:</h2>
+
+          <ul>
+            <% course.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <div class="form-group">
+      <%= form.label :code %>
+      <%= form.text_field :code, id: :course_code, :class => 'form-control border-input'   %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :name %>
+      <%= form.text_field :name, id: :course_name, :class => 'form-control border-input'   %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :description %>
+      <%= form.text_field :description, id: :course_description, :class => 'form-control border-input'   %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :active %>
+      <%= form.select :active, options_for_select([['Active', 1],
+                                                   ['Inactive', 0],
+                                                  ], (if course.active then 1 else 0 end)), :class => 'form-control border-input'   %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :professor_id %>
+      <% options = options_from_collection_for_select(@professor = User.where(userType: 'professor', active: 1).all, :id, :full_name, course.professor_id) %>
+      <%= form.select :professor_id, options, :class => 'form-control border-input'   %>
+    </div>
+
+    <div class="actions text-center">
+      <%= form.submit :class => 'btn btn-info btn-fill btn-wd'  %>
+    </div>
+
+    <div class="clearfix"></div>
+
+<% end %>

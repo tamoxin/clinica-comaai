@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @gpost.title %>
+</p>
+
+<p>
+  <strong>Body:</strong>
+  <%= @gpost.body %>
+</p>
+
+<p>
+  <strong>Link:</strong>
+  <%= @gpost.link %>
+</p>
+
+<p>
+  <strong>Gfolder:</strong>
+  <%= @gpost.gfolder.name %>
+</p>
+
+<%= link_to 'Edit', edit_group_gfolder_gpost_path(@group, @gfolder, @gpost) %> |
+<%= link_to 'Back', group_gfolder_gposts_path(@group, @gfolder) %>

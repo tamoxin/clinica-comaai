@@ -1,0 +1,13 @@
+<% if cfolder.name != nil %>
+    <% if current_page?(action: 'edit')%>
+        <li>
+          <%= link_to(raw('<i class="ti-marker-alt"></i>
+            <p>' + cfolder.name + '</p>'), edit_course_cfolder_path(@course, cfolder) )  %>
+        </li>
+    <% else %>
+        <li>
+          <%= link_to(raw('<i class="ti-marker-alt"></i>
+            <p>' + cfolder.name + '</p>'), course_cfolder_path(@course, cfolder) )  %>
+        </li>
+    <% end %>
+<% end %>

@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @cpost.title %>
+</p>
+
+<p>
+  <strong>Body:</strong>
+  <%= @cpost.body %>
+</p>
+
+<p>
+  <strong>Link:</strong>
+  <%= @cpost.link %>
+</p>
+
+<p>
+  <strong>Cfolder:</strong>
+  <%= @cpost.cfolder.name %>
+</p>
+
+<%= link_to 'Edit', edit_course_cfolder_cpost_path(@course, @cfolder, @cpost) %> |
+<%= link_to 'Back', course_cfolder_cposts_path(@course, @cfolder) %>

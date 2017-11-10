@@ -1,0 +1,6 @@
+<h1>Editing Gpost</h1>
+
+<%= render 'form', gpost: @gpost %>
+
+<%= link_to 'Show', [@group, @gfolder, @gpost] %> |
+<%= link_to 'Back', group_gfolder_gposts_path(@group, @gfolder) %>

@@ -1,0 +1,119 @@
+<div class="wrapper">
+  <div class="sidebar" data-background-color="white" data-active-color="danger">
+
+    <!--
+        Tip 1: you can change the color of the sidebar's background using: data-background-color="white | black"
+        Tip 2: you can change the color of the active button using the data-active-color="primary | info | success | warning | danger"
+    -->
+
+    <div class="sidebar-wrapper">
+      <div class="logo">
+        <%= link_to 'Comaai', root_path, :class => 'simple-text' %>
+
+      </div>
+
+      <ul class="nav">
+
+        <% if coordinator? || admin? %>
+            <li class="">
+              <%= link_to(raw('<i class="ti-user"></i>
+            <p>Users</p>'), users_path )  %>
+            </li>
+        <% end %>
+        <li class="">
+          <%= link_to(raw('<i class="ti-agenda"></i>
+            <p>Courses</p>'), courses_path )  %>
+        </li>
+        <li class="">
+          <%= link_to(raw('<i class="ti-agenda"></i>
+            <p>Groups</p>'), groups_path )  %>
+        </li>
+        <hr>
+        <li class="active">
+          <%= link_to(raw('<i class="ti-user"></i>
+            <p>Students</p>'), group_students_path(@group) )  %>
+        </li>
+        <hr>
+
+        <% if @group.gfolders.exists? %>
+            <%= render @group.gfolders  %>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+
+  <div class="main-panel">
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+
+          <%= link_to @group.name, group_path(@group), :class => 'navbar-brand' %>
+          <p class="navbar-brand"> / </p>
+          <%= link_to 'Students', group_students_path(@group), :class => 'navbar-brand' %>
+        </div>
+          <ul class="nav navbar-nav navbar-right">
+            <% if logged_in? %>
+                <li>
+                  <a>
+                    <p>Hello <%= current_user.full_name %>!</p>
+                  </a>
+                </li>
+                <li>
+                  <%= link_to(raw('<i class="ti-settings"></i> <p>Profile</p>'), user_path(current_user)) %>
+                </li>
+                <li>
+                  <%= link_to(raw('<i class="ti-power-off"></i>
+            <p>Log out</p>'), logout_path, method: :delete )  %>
+                </li>
+            <% end %>
+          </ul>
+
+      </div>
+    </nav>
+
+
+    <div class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-12">
+            <p id="notice"><%= notice %></p>
+
+            <div class="card">
+
+              <div class="header">
+                <h4 class="title">Add Students</h4>
+              </div>
+
+              <div class="content">
+
+
+
+                <%= render 'form' , student: @group.students.build %>
+
+                <hr>
+                  <h4 class="title">Students</h4>
+                <br>
+
+
+                <div class="well">
+                  <% @students.each do |student| %>
+                      <%= student.user.full_name %> <%= link_to 'Erase', [@group, student], method: :delete, data: { confirm: 'Are you sure?' } %>
+                      <br>
+                  <% end %>
+
+
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+
+
+
+  </div>
+</div>

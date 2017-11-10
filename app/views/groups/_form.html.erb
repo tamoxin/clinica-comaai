@@ -1,0 +1,59 @@
+<%= form_with(model: group, local: true) do |form| %>
+  <% if group.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(group.errors.count, "error") %> prohibited this group from being saved:</h2>
+
+      <ul>
+      <% group.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= form.label :code %>
+    <%= form.text_field :code, id: :group_code, :class => 'form-control border-input'    %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :name %>
+    <%= form.text_field :name, id: :group_name, :class => 'form-control border-input'    %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :description %>
+    <%= form.text_field :description, id: :group_description, :class => 'form-control border-input'    %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :startDate %>
+    <%= form.date_select :startDate, id: :group_startDate, :class => 'form-control border-input'    %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :endDate %>
+    <%= form.date_select :endDate, id: :group_endDate, :class => 'form-control border-input'    %>
+  </div>
+
+    <div class="form-group">
+      <%= form.label :active %>
+      <%= form.select :active, options_for_select([['Active', 1],
+                                                   ['Inactive', 0],
+                                                  ], (if group.active then 1 else 0 end)), :class => 'form-control border-input'   %>
+    </div>
+
+
+
+   <div class="form-group">
+     <%= form.label :course_id %>
+     <% options = options_from_collection_for_select(@course = Course.all, :id, :name, group.course_id) %>
+     <%= form.select :course_id, options, :class => 'form-control border-input'    %>
+   </div>
+
+  <div class="actions text-center">
+    <%= form.submit :class => 'btn btn-info btn-fill btn-wd' %>
+  </div>
+    <div class="clearfix"></div>
+
+<% end %>

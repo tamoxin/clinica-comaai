@@ -1,0 +1,27 @@
+<%= form_for(:session, local: true) do |form| %>
+
+    <div class="row">
+      <div class="col-md-offset-2 col-md-8">
+        <div class="form-group">
+          <%= form.label :username %>
+          <%= form.text_field :username, :class => 'form-control border-input', placeholder: 'username' %>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-offset-2 col-md-8">
+        <div class="form-group">
+          <%= form.label :password %>
+          <%= form.password_field :password, :class => 'form-control border-input', placeholder: 'password'  %>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="actions text-center">
+      <%= form.submit 'Log in', :class => 'btn btn-info btn-fill btn-wd'  %>
+    </div>
+    <div class="clearfix"></div>
+
+<% end %>

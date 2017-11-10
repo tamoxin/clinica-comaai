@@ -1,0 +1,105 @@
+<div class="wrapper">
+  <div class="sidebar" data-background-color="white" data-active-color="danger">
+
+    <!--
+        Tip 1: you can change the color of the sidebar's background using: data-background-color="white | black"
+        Tip 2: you can change the color of the active button using the data-active-color="primary | info | success | warning | danger"
+    -->
+
+    <div class="sidebar-wrapper">
+      <div class="logo">
+        <%= link_to 'Comaai', root_path, :class => 'simple-text' %>
+
+      </div>
+
+      <ul class="nav">
+
+        <% if coordinator? || admin? %>
+            <li class="">
+              <%= link_to(raw('<i class="ti-user"></i>
+            <p>Users</p>'), users_path )  %>
+            </li>
+        <% end %>
+        <li class="active">
+          <%= link_to(raw('<i class="ti-agenda"></i>
+            <p>Courses</p>'), courses_path )  %>
+        </li>
+        <li>
+          <%= link_to(raw('<i class="ti-agenda"></i>
+            <p>Groups</p>'), groups_path )  %>
+        </li>
+        <hr>
+        <% if @course.cfolders.exists? %>
+            <%= render @course.cfolders  %>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+
+  <div class="main-panel">
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+
+          <%= link_to @course.name, course_path(@course), :class => 'navbar-brand' %>
+          <p class="navbar-brand"> / </p>
+          <%= link_to @cfolder.name, course_cfolder_path(@course, @cfolder), :class => 'navbar-brand' %>
+        </div>
+        <ul class="nav navbar-nav navbar-right">
+          <% if logged_in? %>
+              <li>
+                <a>
+                  <p>Hello <%= current_user.full_name %>!</p>
+                </a>
+              </li>
+              <li>
+                <%= link_to(raw('<i class="ti-settings"></i> <p>Profile</p>'), user_path(current_user)) %>
+              </li>
+              <li>
+                <%= link_to(raw('<i class="ti-power-off"></i>
+            <p>Log out</p>'), logout_path, method: :delete )  %>
+              </li>
+          <% end %>
+        </ul>
+
+      </div>
+    </nav>
+
+
+    <div class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-12">
+            <p id="notice"><%= notice %></p>
+
+            <div class="card">
+
+              <div class="header">
+                <h4 class="title">Posts:</h4>
+              </div>
+
+              <div class="content">
+                </li>
+                <% if @cfolder.cposts.exists? %>
+                    <%= render @cfolder.cposts %>
+                <% end %>
+
+
+
+              </div>
+
+
+            </div>
+
+            <%= link_to 'Edit', edit_course_cfolder_path(@course, @cfolder) %>
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+
+
+
+  </div>
+</div>

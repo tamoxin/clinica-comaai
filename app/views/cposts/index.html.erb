@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Cposts</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Body</th>
+      <th>Link</th>
+      <th>Cfolder</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @cposts.each do |cpost| %>
+      <tr>
+        <td><%= cpost.title %></td>
+        <td><%= cpost.body %></td>
+        <td><%= cpost.link %></td>
+        <td><%= cpost.cfolder.name %></td>
+        <td><%= link_to 'Show', course_cfolder_cpost_path(@course, @cfolder, cpost) %></td>
+        <td><%= link_to 'Edit', edit_course_cfolder_cpost_path(@course, @cfolder, cpost) %></td>
+        <td><%= link_to 'Destroy', [@course, @cfolder, cpost], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Cpost', new_course_cfolder_cpost_path(@course, @cfolder) %>

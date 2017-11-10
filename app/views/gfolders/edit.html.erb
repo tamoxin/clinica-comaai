@@ -1,0 +1,118 @@
+<div class="wrapper">
+  <div class="sidebar" data-background-color="white" data-active-color="danger">
+
+    <!--
+        Tip 1: you can change the color of the sidebar's background using: data-background-color="white | black"
+        Tip 2: you can change the color of the active button using the data-active-color="primary | info | success | warning | danger"
+    -->
+
+    <div class="sidebar-wrapper">
+      <div class="logo">
+        <%= link_to 'Comaai', root_path, :class => 'simple-text' %>
+
+      </div>
+
+      <ul class="nav">
+
+        <% if coordinator? || admin? %>
+            <li class="">
+              <%= link_to(raw('<i class="ti-user"></i>
+            <p>Users</p>'), users_path )  %>
+            </li>
+        <% end %>
+        <li class="">
+          <%= link_to(raw('<i class="ti-agenda"></i>
+            <p>Courses</p>'), courses_path )  %>
+        </li>
+        <li class="active">
+          <%= link_to(raw('<i class="ti-agenda"></i>
+            <p>Groups</p>'), groups_path )  %>
+        </li>
+        <hr>
+        <li class="text-center">
+
+          <p>Add a side folder:</p>
+          <%= render 'gfolders/form' , gfolder: @group.gfolders.build %>
+        </li>
+        <hr>
+        <% if @group.gfolders.exists? %>
+            <%= render @group.gfolders  %>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+
+  <div class="main-panel">
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+
+          <%= link_to 'Editing '+@group.name, edit_group_path(@group), :class => 'navbar-brand' %>
+          <p class="navbar-brand"> / </p>
+          <%= link_to @gfolder.name, edit_group_gfolder_path(@group, @gfolder), :class => 'navbar-brand' %>
+        </div>
+        <ul class="nav navbar-nav navbar-right">
+          <% if logged_in? %>
+              <li>
+                <a>
+                  <p>Hello <%= current_user.full_name %>!</p>
+                </a>
+              </li>
+              <li>
+                <%= link_to(raw('<i class="ti-settings"></i> <p>Profile</p>'), user_path(current_user)) %>
+              </li>
+              <li>
+                <%= link_to(raw('<i class="ti-power-off"></i>
+            <p>Log out</p>'), logout_path, method: :delete )  %>
+              </li>
+          <% end %>
+        </ul>
+
+      </div>
+    </nav>
+
+
+    <div class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-12">
+            <p id="notice"><%= notice %></p>
+
+            <div class="card">
+
+              <div class="content">
+                <%= render 'form', gfolder: @gfolder %>
+              </div>
+
+
+              <div class="header">
+                <h4 class="title">Add a post:</h4>
+              </div>
+
+              <div class="content">
+                <%= render 'gposts/form' , gpost: @gfolder.gposts.build %>
+                </li>
+                <p>Posts:</p>
+                <% if @gfolder.gposts.exists? %>
+                    <%= render @gfolder.gposts %>
+                <% end %>
+
+
+
+              </div>
+
+
+            </div>
+
+            <%= link_to 'Ok', group_gfolder_path(@group, @gfolder) %>
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+
+
+
+  </div>
+</div>

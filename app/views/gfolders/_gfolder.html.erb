@@ -1,0 +1,13 @@
+<% if gfolder.name != nil %>
+    <% if controller.controller_name != 'students' && current_page?(action: 'edit') %>
+        <li>
+          <%= link_to(raw('<i class="ti-marker-alt"></i>
+            <p>' + gfolder.name + '</p>'), edit_group_gfolder_path(@group, gfolder) )  %>
+        </li>
+    <% else %>
+        <li>
+          <%= link_to(raw('<i class="ti-marker-alt"></i>
+            <p>' + gfolder.name + '</p>'), group_gfolder_path(@group, gfolder) )  %>
+        </li>
+    <% end %>
+<% end %>
