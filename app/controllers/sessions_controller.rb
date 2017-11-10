@@ -16,7 +16,6 @@ class SessionsController < ApplicationController
   end
 
   def create
-    User.new(username: 'admin', password: 'admin', userType: 'admin', firstName: 'admin', lastName: 'admin', active: 1)
     user = User.find_by(username: params[:session][:username].downcase)
     if user && user.password == (params[:session][:password])
       if user.active?
