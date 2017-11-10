@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
-  skip_before_action :require_professor, :require_admin, :require_coordinator
+  skip_before_action :require_professor, :require_admin, :require_coordinator, :require_login
   # before_action :not_available, only: [:destroy]
   # before_action :coord_or_admin, only: [:new, :create, :index]
   # before_action :is_owner, only: [:show, :edit, :update]
