@@ -8,7 +8,7 @@ class User < ApplicationRecord
 
   before_save { self.username = username.downcase }
   before_save { self.email = email.downcase }
-  validates :username, presence: true#, length: { maximum: 16, minimum: 5 }, uniqueness: { case_sensitive: false }
+  validates :username, presence: true, length: { maximum: 16, minimum: 5 }, uniqueness: { case_sensitive: false }
   validates :password, presence: true#, length: { maximum: 15, minimum: 8 }
   validates :userType, presence: true, inclusion: { in: %w(admin coordinator professor student) }
   validates :firstName, presence: true#, length: { maximum: 20, minimum: 5 }
