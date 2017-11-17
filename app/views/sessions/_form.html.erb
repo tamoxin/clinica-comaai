@@ -1,7 +1,7 @@
 <%= form_for(:session, local: true) do |form| %>
 
     <div class="row">
-      <div class="col-md-offset-2 col-md-8">
+      <div class="col-md-offset-2 col-md-8 col-sm-offset-2 col-sm-offset-8">
         <div class="form-group">
           <%= form.label :username %>
           <%= form.text_field :username, :class => 'form-control border-input', placeholder: 'username' %>
@@ -10,7 +10,7 @@
     </div>
 
     <div class="row">
-      <div class="col-md-offset-2 col-md-8">
+      <div class="col-md-offset-2 col-md-8 col-sm-offset-2 col-sm-offset-8">
         <div class="form-group">
           <%= form.label :password %>
           <%= form.password_field :password, :class => 'form-control border-input', placeholder: 'password'  %>
