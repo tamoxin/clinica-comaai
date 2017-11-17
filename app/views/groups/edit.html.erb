@@ -86,7 +86,7 @@
 
           <div class="content">
 
-            <% if coordinator? %>
+            <% if coordinator? || admin? %>
 
             <%= render 'form', group: @group %>
 
@@ -107,14 +107,11 @@
               <%= @group.description %>
             </p>
 
-            <% end %>
-
-
             <p>
               <strong>Course:</strong>
               <%= @group.course.name %>
             </p>
-
+            <% end %>
 
           </div>
         </div>

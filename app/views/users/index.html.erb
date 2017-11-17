@@ -91,7 +91,7 @@
                         <td><%= user.lastName %></td>
                         <td><%= user.email %></td>
                         <td><%= user.phone %></td>
-                        <td><%= user.active %></td>
+                        <td><%= user.active ? 'Activo' : 'Inactivo' %></td>
                         <td><%= link_to 'Show', user %></td>
                         <td><%= link_to 'Edit', edit_user_path(user) %></td>
                       </tr>

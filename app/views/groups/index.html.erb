@@ -104,7 +104,7 @@
                         <% if coordinator? || admin? %>
                         <td><%= group.startDate %></td>
                         <td><%= group.endDate %></td>
-                        <td><%= group.active %></td>
+                        <td><%= group.active ? 'Activo' : 'Inactivo' %></td>
                         <% end %>
                         <td><%= group.course.name %></td>
                         <td><%= link_to 'Show', group %></td>

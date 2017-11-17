@@ -28,6 +28,13 @@
           <%= link_to(raw('<i class="ti-agenda"></i>
             <p>Groups</p>'), groups_path )  %>
         </li>
+        <% if coordinator? || admin? %>
+            <hr>
+            <li class="">
+              <%= link_to(raw('<i class="ti-user"></i>
+            <p>Students</p>'), group_students_path(@group) )  %>
+            </li>
+        <% end %>
         <hr>
         <li class="text-center">
 

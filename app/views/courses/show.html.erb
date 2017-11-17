@@ -86,7 +86,7 @@
                 <% if coordinator? || admin? %>
                 <p>
                   <strong>Active:</strong>
-                  <%= @course.active %>
+                  <%= @course.active ? 'Activo' : 'Inactivo' %>
                 </p>
                 <p>
                   <strong>Professor:</strong>

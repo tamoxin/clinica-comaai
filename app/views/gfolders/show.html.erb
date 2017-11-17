@@ -14,7 +14,7 @@
 
       <ul class="nav">
 
-        <% if coordinator? %>
+        <% if coordinator? || admin? %>
             <li class="">
               <%= link_to(raw('<i class="ti-user"></i>
             <p>Users</p>'), users_path )  %>

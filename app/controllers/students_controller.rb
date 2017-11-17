@@ -27,7 +27,7 @@ class StudentsController < ApplicationController
       if @student.save
         format.html { redirect_to group_students_path(@group), notice: 'Student was successfully created.' }
       else
-        format.html { redirect_to group_students_path(@course), notice: :unprocessable_entity }
+        format.html { redirect_to group_students_path(@group), notice: "Student couldn't be created" }
       end
     end
   end

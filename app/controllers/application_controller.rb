@@ -40,31 +40,31 @@ class ApplicationController < ActionController::Base
 
 
   def require_coordinator
-    unless coordinator?
+    unless coordinator? || admin?
       if professor?
-             redirect_to courses_path
-           else if student?
-                  redirect_to groups_path
-                else
-                  redirect_to login_path
-                end
-           end
+        redirect_to courses_path
+      else if student?
+        redirect_to groups_path
+      else
+        redirect_to login_path
+      end
       end
     end
+  end
 
 
   def require_professor
-    unless professor?
+    unless professor? || admin?
       if coordinator?
-             redirect_to users_path
-           else if student?
-                  redirect_to groups_path
-                else
-                  redirect_to login_path
-                end
-           end
+        redirect_to users_path
+      else if student?
+        redirect_to groups_path
+      else
+        redirect_to login_path
+      end
       end
     end
+  end
 end
 
 

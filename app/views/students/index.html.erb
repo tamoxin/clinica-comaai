@@ -79,18 +79,18 @@
             <p id="notice"><%= notice %></p>
 
             <div class="card">
-
-              <div class="header">
-                <h4 class="title">Add Students</h4>
-              </div>
-
+              <% @users = User.where(userType: 'student', active: 1).where.not(id: [@group.user_ids]).all %>
+              
               <div class="content">
-
-
+                <% if @users.exists? %>
+                <h4 class="title">Add Students</h4>
+              <br>
 
                 <%= render 'form' , student: @group.students.build %>
-
                 <hr>
+                <% end %>
+              
+                
                   <h4 class="title">Students</h4>
                 <br>
 

@@ -98,7 +98,7 @@ class GpostsController < ApplicationController
   end
 
   def is_owner
-    unless current_user.id == Course.find(params[:course_id]).professor_id || admin?
+    unless current_user.id == Group.find(params[:group_id]).course.professor_id || admin?
       redirect_to courses_path
     end
   end

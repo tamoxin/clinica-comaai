@@ -37,7 +37,7 @@
             <p>My Courses</p>'), groups_path )  %>
             </li>
         <% end %>
-        <% if coordinator? %>
+        <% if coordinator? || admin? %>
         <hr>
         <li class="">
           <%= link_to(raw('<i class="ti-user"></i>
@@ -117,7 +117,8 @@
 
                 <p>
                   <strong>Active:</strong>
-                  <%= @group.active %>
+                  <%= @group.active ? 'Activo' : 'Inactivo' %>
+
                 </p>
 
                 <% end %>

@@ -14,11 +14,11 @@
 
     <div class="form-group">
       <%= form.label :user_id %>
-      <% options = options_from_collection_for_select(@user = User.where(userType: 'student', active: 1).all, :id, :full_name, student.user_id) %>
+      <% options = options_from_collection_for_select(@user = User.where(userType: 'student', active: 1).where.not(id: [@group.user_ids]).all, :id, :full_name, student.user_id) %>
       <%= form.select :user_id, options, :class => 'form-control border-input'   %>
     </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit 'add Student' %>
   </div>
 <% end %>

@@ -104,7 +104,7 @@
             <% if admin? || coordinator? %>
                 <p>
                   <strong>Active:</strong>
-                  <%= @user.active %>
+                  <%= @user.active ? 'Activo' : 'Inactivo' %>
                 </p>
             <% end %>
 
