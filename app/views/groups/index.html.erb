@@ -17,24 +17,24 @@
         <% if coordinator? || admin? %>
             <li class="">
               <%= link_to(raw('<i class="ti-user"></i>
-            <p>Users</p>'), users_path )  %>
+            <p>Usuarios</p>'), users_path )  %>
             </li>
         <% end %>
         <% if coordinator? || professor? || admin? %>
         <li class="">
           <%= link_to(raw('<i class="ti-agenda"></i>
-            <p>Courses</p>'), courses_path )  %>
+            <p>Cursos</p>'), courses_path )  %>
         </li>
         <% end %>
         <% if coordinator? || professor? || admin? %>
         <li class="active">
           <%= link_to(raw('<i class="ti-agenda"></i>
-            <p>Groups</p>'), groups_path )  %>
+            <p>Grupos</p>'), groups_path )  %>
         </li>
         <% else %>
             <li class="active">
               <%= link_to(raw('<i class="ti-agenda"></i>
-            <p>My Courses</p>'), groups_path )  %>
+            <p>Mis Cursos</p>'), groups_path )  %>
             </li>
         <% end %>
       </ul>
@@ -45,21 +45,21 @@
     <nav class="navbar navbar-default">
       <div class="container-fluid">
         <div class="navbar-header">
-          <a class="navbar-brand">Groups</a>
+          <a class="navbar-brand">Grupos</a>
         </div>
           <ul class="nav navbar-nav navbar-right">
             <% if logged_in? %>
                 <li>
                   <a>
-                    <p>Hello <%= current_user.full_name %>!</p>
+                    <p>!Hola <%= current_user.full_name %>!</p>
                   </a>
                 </li>
                 <li>
-                  <%= link_to(raw('<i class="ti-settings"></i> <p>Profile</p>'), user_path(current_user)) %>
+                  <%= link_to(raw('<i class="ti-settings"></i> <p>Perfil</p>'), user_path(current_user)) %>
                 </li>
                 <li>
                   <%= link_to(raw('<i class="ti-power-off"></i>
-            <p>Log out</p>'), logout_path, method: :delete )  %>
+            <p>Cerrar Sesión</p>'), logout_path, method: :delete )  %>
                 </li>
             <% end %>
           </ul>
@@ -80,18 +80,18 @@
               <div class="content table-responsive table-full-width">
                 <table class="table table-striped">
                   <thead>
-                  <th>Code</th>
-                  <th>Name</th>
-                  <th>Description</th>
+                  <th>Código</th>
+                  <th>Nombre</th>
+                  <th>Descripción</th>
                   <% if coordinator? || admin? %>
-                  <th>Start date</th>
-                  <th>End date</th>
-                  <th>Active</th>
+                  <th>Fecha de Inicio</th>
+                  <th>Fecha de Final</th>
+                  <th>Activo</th>
                   <% end %>
-                  <th>Course</th>
+                  <th>Curso</th>
                   <th colspan="3">
                     <% if coordinator? || admin? %>
-                    <%= link_to 'New Group', new_group_path, :class => 'btn btn-info btn-fill btn-wd' %>
+                    <%= link_to 'Nuevo Grupo', new_group_path, :class => 'btn btn-info btn-fill btn-wd' %>
                     <% end %>
                   </th>
                   </thead>
@@ -107,9 +107,9 @@
                         <td><%= group.active ? 'Activo' : 'Inactivo' %></td>
                         <% end %>
                         <td><%= group.course.name %></td>
-                        <td><%= link_to 'Show', group %></td>
+                        <td><%= link_to 'Mostrar', group %></td>
                         <% if coordinator? || professor? || admin? %>
-                        <td><%= link_to 'Edit', edit_group_path(group) %></td>
+                        <td><%= link_to 'Editar', edit_group_path(group) %></td>
                         <% end %>
                       </tr>
                   <% end %>

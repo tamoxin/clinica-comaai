@@ -22,13 +22,13 @@ class SessionsController < ApplicationController
         log_in user
         redirect_to root_path
       else
-        flash[:danger] = 'Inactive user'
-        render 'new'
+        redirect_to login_path, notice: 'Usuario inactivo'
+        
       end
 
     else
-      flash[:danger] = 'Invalid email/password combination'
-      render 'new'
+      redirect_to login_path, notice: 'Combinación de usuario/contraseña inválido'
+    
     end
   end
 

@@ -7,7 +7,6 @@ class CoursesController < ApplicationController
   before_action :not_available, only: [:destroy]
   before_action :is_owner, except: [:index]
 
-  # PUTOS
   # GET /courses
   # GET /courses.json
   def index
